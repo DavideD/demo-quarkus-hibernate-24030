@@ -1,21 +1,5 @@
 package fr.uge.modules.api.endpoint.insertion;
 
-import fr.uge.modules.api.model.entities.RawLogEntity;
-import io.quarkus.hibernate.reactive.panache.Panache;
-import io.smallrye.mutiny.Uni;
-import org.eclipse.microprofile.reactive.messaging.Channel;
-import org.eclipse.microprofile.reactive.messaging.Emitter;
-import org.eclipse.microprofile.reactive.messaging.OnOverflow;
-
-import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +8,22 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 import java.util.stream.LongStream;
+
+import fr.uge.modules.api.model.entities.RawLogEntity;
+import io.quarkus.hibernate.reactive.panache.Panache;
+import io.smallrye.mutiny.Uni;
+import jakarta.inject.Inject;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
+import org.eclipse.microprofile.reactive.messaging.OnOverflow;
 
 @Path("/insertlog")
 public class InsertBatchLog {
@@ -37,7 +37,8 @@ public class InsertBatchLog {
     @OnOverflow(OnOverflow.Strategy.UNBOUNDED_BUFFER)
     Emitter<RawLogEntity> emitter;
 
-    @Inject Validator rawLogValidator;
+    @Inject
+    Validator rawLogValidator;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -47,11 +48,11 @@ public class InsertBatchLog {
                 .map(rawLogValidator::validate)
                 .filter(Predicate.not(Set::isEmpty))
                 .flatMap(s -> s.stream().distinct())
-                .map(ConstraintViolation::getMessage)
+                .map( ConstraintViolation::getMessage)
                 .toList();
 
         if(!violations.isEmpty()) {
-            return Uni.createFrom().item(Response.status(400).entity(violations).build());
+            return Uni.createFrom().item( Response.status( 400 ).entity( violations ).build() );
         }
 
         return Panache.withTransaction(

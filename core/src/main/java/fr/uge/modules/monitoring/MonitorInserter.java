@@ -1,25 +1,26 @@
 package fr.uge.modules.monitoring;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.vertx.core.json.JsonObject;
-import io.quarkus.hibernate.reactive.panache.Panache;
-import fr.uge.modules.api.model.entities.MonitoringEntity;
-import io.quarkus.scheduler.Scheduled;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import javax.enterprise.context.ApplicationScoped;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.uge.modules.api.model.entities.MonitoringEntity;
+import io.quarkus.hibernate.reactive.panache.Panache;
+import io.quarkus.scheduler.Scheduled;
+import io.vertx.core.json.JsonObject;
+import jakarta.enterprise.context.ApplicationScoped;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
 public class MonitorInserter {

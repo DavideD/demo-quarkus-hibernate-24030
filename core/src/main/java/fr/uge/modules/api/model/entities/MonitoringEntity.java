@@ -1,9 +1,14 @@
 package fr.uge.modules.api.model.entities;
 
-import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "monitoring")

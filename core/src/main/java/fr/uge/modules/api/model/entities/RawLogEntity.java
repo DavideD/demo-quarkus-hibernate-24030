@@ -1,9 +1,9 @@
 package fr.uge.modules.api.model.entities;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "rawlog")

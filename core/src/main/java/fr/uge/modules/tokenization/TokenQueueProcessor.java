@@ -1,5 +1,13 @@
 package fr.uge.modules.tokenization;
 
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.jboss.logmanager.Level;
+
 import fr.uge.modules.api.model.entities.LogEntity;
 import fr.uge.modules.api.model.entities.RawLogEntity;
 import fr.uge.modules.api.model.entities.TokenEntity;
@@ -8,16 +16,9 @@ import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.reactive.messaging.annotations.Merge;
 import io.vertx.core.json.JsonObject;
-import org.jboss.logmanager.Level;
-import org.eclipse.microprofile.reactive.messaging.Outgoing;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
-import javax.enterprise.context.ApplicationScoped;
-
-import java.sql.Timestamp;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.List;
-import java.util.logging.Logger;
+import org.eclipse.microprofile.reactive.messaging.Outgoing;
 
 @ApplicationScoped
 public class TokenQueueProcessor {

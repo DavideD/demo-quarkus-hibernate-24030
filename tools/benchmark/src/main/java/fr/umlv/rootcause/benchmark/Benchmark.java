@@ -13,7 +13,7 @@ public class Benchmark {
     public static void main(String[] args) throws InterruptedException {
         //use this to try out spamming rabbitmq with different parameters
         List<String> stringList = new ArrayList<>();
-        int batchSize = 3000;
+        int batchSize = 30000;
         IntStream.range(0, batchSize)
                 .forEach(i -> stringList.add("2020-06-15\t12:49:50\tGET\t12:49:50\tGET\t12:49:50\tGET\t12:49:50\tGET"));
 

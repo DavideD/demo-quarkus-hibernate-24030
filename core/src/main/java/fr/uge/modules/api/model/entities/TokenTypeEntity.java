@@ -1,9 +1,8 @@
 package fr.uge.modules.api.model.entities;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tokentype", schema = "public", catalog = "rootcause")
